@@ -245,3 +245,68 @@ header{
     }
   }
 }
+
+.location{
+  .top{
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+  }
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  .location_map{
+    display: flex;
+    justify-content: center;
+    margin-top: 64px;
+    position: relative;
+    height: 411px;
+    width: 861px;
+    background: url($path + 'map_default.png');
+    .dot{
+      width: 40px;
+      height: 40px;
+      background: url($path + 'default_dot_map.png');
+      transition: 0.3s all;
+      position: relative;
+
+      .hover_img{
+        //width: 240px;
+        //height: 240px;
+        width: 240px;
+        height: 160px;
+        position: absolute;
+        top: 0;
+        left: 0;
+        transform: translate(calc(-100% + 20px), calc(-100% + 20px)) scale(0);
+        transition: 0.3s all;
+        img{
+          width: 240px;
+          height: 160px;
+          object-fit: cover;
+        }
+      }
+      &:hover{
+        background: url($path + 'active_dot_map.png');
+        .hover_img{
+          transform: translate(calc(-100% + 20px), calc(-100% + 20px)) scale(1);
+        }
+      }
+    }
+    .trigger_btn_location{
+
+    }
+  }
+}
+svg{
+  transition: 0.3s all;
+  path{
+    transition: 0.3s all;
+  }
+  circle{
+    transition: 0.3s all;
+  }
+
+}

@@ -86,4 +86,14 @@ document.addEventListener('DOMContentLoaded', ()=>{
             optimizeAnimateMenu(item)
         })
     })
+
+    const dotsInMap = document.querySelectorAll('.dot')
+
+    dotsInMap.forEach(item=>{
+        let hoverItem = item.querySelector('.hover_img')
+        let image = document.createElement('img')
+        image.src = hoverItem.dataset.img
+        hoverItem.appendChild(image)
+    })
+
 });

@@ -109,5 +109,12 @@ document.addEventListener('DOMContentLoaded', function () {
       optimizeAnimateMenu(item);
     });
   });
+  var dotsInMap = document.querySelectorAll('.dot');
+  dotsInMap.forEach(function (item) {
+    var hoverItem = item.querySelector('.hover_img');
+    var image = document.createElement('img');
+    image.src = hoverItem.dataset.img;
+    hoverItem.appendChild(image);
+  });
 });
 //# sourceMappingURL=script.js.map
