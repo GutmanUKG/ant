@@ -48,6 +48,38 @@ document.addEventListener('DOMContentLoaded', ()=>{
         }
     }
 
+
+    class OwlSlider{
+        constructor({element = null, options = {},
+                    btnNext = null, btnPrev = null}){
+            this.element = element
+            this.options = options
+            this.btnNext = document.querySelector(btnNext)
+            this.btnPrev = document.querySelector(btnPrev)
+        }
+        init(){
+            document.querySelector(this.element).classList.add('owl-carousel', 'owl-theme')
+
+            $(this.element).owlCarousel({
+                ...this.options
+            })
+            console.log(this.btnPrev)
+            if(this.btnPrev && this.btnNext != null){
+                var owl = $('.owl-carousel');
+                owl.owlCarousel();
+                $(this.btnNext).click((e)=>{
+                    e.preventDefault();
+                    owl.trigger('next.owl.carousel')
+
+                })
+                $(this.btnPrev).click((e)=> {
+                    e.preventDefault();
+                    owl.trigger('prev.owl.carousel', [300]);
+                })
+            }
+        }
+    }
+
     const defaultAnimate = new Animation({
         trigger:'mouseenter',
         elements: '.default_animate'
@@ -96,4 +128,20 @@ document.addEventListener('DOMContentLoaded', ()=>{
         hoverItem.appendChild(image)
     })
 
+
+
+    const caseSlider = new OwlSlider({
+        element: '.case_slider',
+        btnNext: '.next_btn',
+        btnPrev: '.prev_btn',
+        options: {
+            loop:true,
+            margin:20,
+            nav:false,
+            items: 5.5,
+            stagePadding: 30,
+            dots: false
+        }
+    })
+    caseSlider.init()
 });

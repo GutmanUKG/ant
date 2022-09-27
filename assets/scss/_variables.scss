@@ -2,12 +2,14 @@
   font-family: Raleway;
   src: url("../fonts/Raleway-VariableFont_wght.ttf") format('truetype');
 }
+$path : '../assets/imgs/';
 $Raleway: 'Raleway',sans-serif;
 $Prata:  'Prata', serif;
 $Montserrat: 'Montserrat', sans-serif;
 html,
 body{
   font-family: $Raleway;
+  background: linear-gradient(180deg, #FFFFFF 0%, #F4F4F5 27.52%);
 }
 .default_animate{
   position: relative;
@@ -190,4 +192,53 @@ body{
   &:hover{
     transform: translateY(-100%);
   }
+}
+
+.slider_btn{
+  display: block;
+  width: 64px;
+  height: 64px;
+  background: url($path + 'icons/ar_active.png');
+}
+label,
+input,
+textarea{
+  width: 100%;
+  border-radius: 4px;
+  outline: none;
+  box-sizing: border-box;
+  background: transparent;
+  font-family: $Raleway;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 13px;
+  line-height: 24px;
+  letter-spacing: 0.1em;
+  color: rgba(23, 23, 27, 0.8);
+}
+input,
+textarea{
+  border: 1px solid #D1D1D8;
+  padding: 14px 24px;
+
+  &:focus-visible{
+    border: 1px solid #D1D1D8;
+    outline: none;
+  }
+}
+textarea{
+  resize: none;
+}
+
+.submit_btn{
+  font-family: $Raleway;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 13px;
+  line-height: 24px;
+  letter-spacing: 0.1em;
+  color: rgba(0, 0, 0, 0.75);
+  border: 1px solid #17171B;
+  background: transparent;
+
 }

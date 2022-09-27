@@ -1,5 +1,11 @@
 "use strict";
 
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
@@ -72,6 +78,50 @@ document.addEventListener('DOMContentLoaded', function () {
     return Animation;
   }();
 
+  var OwlSlider = /*#__PURE__*/function () {
+    function OwlSlider(_ref2) {
+      var _ref2$element = _ref2.element,
+          element = _ref2$element === void 0 ? null : _ref2$element,
+          _ref2$options = _ref2.options,
+          options = _ref2$options === void 0 ? {} : _ref2$options,
+          _ref2$btnNext = _ref2.btnNext,
+          btnNext = _ref2$btnNext === void 0 ? null : _ref2$btnNext,
+          _ref2$btnPrev = _ref2.btnPrev,
+          btnPrev = _ref2$btnPrev === void 0 ? null : _ref2$btnPrev;
+
+      _classCallCheck(this, OwlSlider);
+
+      this.element = element;
+      this.options = options;
+      this.btnNext = document.querySelector(btnNext);
+      this.btnPrev = document.querySelector(btnPrev);
+    }
+
+    _createClass(OwlSlider, [{
+      key: "init",
+      value: function init() {
+        document.querySelector(this.element).classList.add('owl-carousel', 'owl-theme');
+        $(this.element).owlCarousel(_objectSpread({}, this.options));
+        console.log(this.btnPrev);
+
+        if (this.btnPrev && this.btnNext != null) {
+          var owl = $('.owl-carousel');
+          owl.owlCarousel();
+          $(this.btnNext).click(function (e) {
+            e.preventDefault();
+            owl.trigger('next.owl.carousel');
+          });
+          $(this.btnPrev).click(function (e) {
+            e.preventDefault();
+            owl.trigger('prev.owl.carousel', [300]);
+          });
+        }
+      }
+    }]);
+
+    return OwlSlider;
+  }();
+
   var defaultAnimate = new Animation({
     trigger: 'mouseenter',
     elements: '.default_animate'
@@ -116,5 +166,19 @@ document.addEventListener('DOMContentLoaded', function () {
     image.src = hoverItem.dataset.img;
     hoverItem.appendChild(image);
   });
+  var caseSlider = new OwlSlider({
+    element: '.case_slider',
+    btnNext: '.next_btn',
+    btnPrev: '.prev_btn',
+    options: {
+      loop: true,
+      margin: 20,
+      nav: false,
+      items: 5.5,
+      stagePadding: 30,
+      dots: false
+    }
+  });
+  caseSlider.init();
 });
 //# sourceMappingURL=script.js.map
