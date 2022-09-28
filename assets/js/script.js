@@ -58,12 +58,15 @@ document.addEventListener('DOMContentLoaded', ()=>{
             this.btnPrev = document.querySelector(btnPrev)
         }
         init(){
-            document.querySelector(this.element).classList.add('owl-carousel', 'owl-theme')
+            console.log(this.element)
+            document.querySelectorAll(this.element).forEach(item=>{
+                item.classList.add('owl-carousel', 'owl-theme')
+            })
 
             $(this.element).owlCarousel({
                 ...this.options
             })
-            console.log(this.btnPrev)
+
             if(this.btnPrev && this.btnNext != null){
                 var owl = $('.owl-carousel');
                 owl.owlCarousel();
@@ -144,4 +147,53 @@ document.addEventListener('DOMContentLoaded', ()=>{
         }
     })
     caseSlider.init()
+    try{
+        const caseSliderInner = new OwlSlider({
+            element: '.case_slider_inner',
+            btnNext: '.next_btn_inner',
+            btnPrev: '.prev_btn_inner',
+            options: {
+                loop:true,
+                margin:20,
+                nav:false,
+                items: 5.5,
+                stagePadding: 30,
+                dots: false
+            }
+        })
+        caseSliderInner.init()
+    }catch (e){
+
+    }
+    try {
+        const innerProgectsSlider = document.querySelectorAll('.item_slider_progect_list')
+        innerProgectsSlider.forEach(item=>{
+            item.classList.add('owl-carousel', 'owl-theme')
+            $(item).owlCarousel({
+                loop:false,
+                margin:0,
+                items: 1,
+                nav:false,
+                dots:false,
+            })
+            let btnNext = item.parentNode.querySelector('.next_btn')
+            let btnPrev = item.parentNode.querySelector('.prev_btn')
+            btnPrev.style.opacity = .5
+            let owl = $(item);
+            $(btnNext).click((e)=>{
+                e.preventDefault();
+                owl.trigger('next.owl.carousel')
+                btnPrev.style.opacity = 1
+
+            })
+            $(btnPrev).click((e)=> {
+                e.preventDefault();
+                owl.trigger('prev.owl.carousel', [300]);
+
+            })
+        })
+    }catch(e){
+
+    }
+
 });

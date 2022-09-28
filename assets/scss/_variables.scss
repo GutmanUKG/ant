@@ -83,7 +83,16 @@ body{
       right: 0;
     }
   }
-
+  &.button_default_dark{
+    color: rgba(0, 0, 0, 0.75);
+    border: 1px solid #17171B;
+    &:before{
+      background: rgba(23, 23, 27, 1);
+    }
+    &:hover{
+      color: #fff;
+    }
+  }
 }
 .default_link{
   font-family: $Raleway;

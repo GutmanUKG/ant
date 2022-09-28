@@ -100,9 +100,11 @@ document.addEventListener('DOMContentLoaded', function () {
     _createClass(OwlSlider, [{
       key: "init",
       value: function init() {
-        document.querySelector(this.element).classList.add('owl-carousel', 'owl-theme');
+        console.log(this.element);
+        document.querySelectorAll(this.element).forEach(function (item) {
+          item.classList.add('owl-carousel', 'owl-theme');
+        });
         $(this.element).owlCarousel(_objectSpread({}, this.options));
-        console.log(this.btnPrev);
 
         if (this.btnPrev && this.btnNext != null) {
           var owl = $('.owl-carousel');
@@ -180,5 +182,49 @@ document.addEventListener('DOMContentLoaded', function () {
     }
   });
   caseSlider.init();
+
+  try {
+    var caseSliderInner = new OwlSlider({
+      element: '.case_slider_inner',
+      btnNext: '.next_btn_inner',
+      btnPrev: '.prev_btn_inner',
+      options: {
+        loop: true,
+        margin: 20,
+        nav: false,
+        items: 5.5,
+        stagePadding: 30,
+        dots: false
+      }
+    });
+    caseSliderInner.init();
+  } catch (e) {}
+
+  try {
+    var innerProgectsSlider = document.querySelectorAll('.item_slider_progect_list');
+    innerProgectsSlider.forEach(function (item) {
+      item.classList.add('owl-carousel', 'owl-theme');
+      $(item).owlCarousel({
+        loop: false,
+        margin: 0,
+        items: 1,
+        nav: false,
+        dots: false
+      });
+      var btnNext = item.parentNode.querySelector('.next_btn');
+      var btnPrev = item.parentNode.querySelector('.prev_btn');
+      btnPrev.style.opacity = .5;
+      var owl = $(item);
+      $(btnNext).click(function (e) {
+        e.preventDefault();
+        owl.trigger('next.owl.carousel');
+        btnPrev.style.opacity = 1;
+      });
+      $(btnPrev).click(function (e) {
+        e.preventDefault();
+        owl.trigger('prev.owl.carousel', [300]);
+      });
+    });
+  } catch (e) {}
 });
 //# sourceMappingURL=script.js.map
