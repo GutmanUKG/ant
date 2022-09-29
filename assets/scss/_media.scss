@@ -60,6 +60,27 @@
 
 
 @media(max-width: 1000px){
+  .inner .inner_right .right_img{
+    transform: translate(14px, -111px);
+  }
+  .inner .inner_left{
+    margin-top: -16px;
+  }
+
+  .inner .inner_left h1:before,
+  .inner .inner_left .subtitle:after,
+  .inner .inner_left .wrapper_btn:after{
+    background-size: contain;
+  }
+  .inner .inner_left h1:before{
+    top: -60px;
+  }
+  .inner .inner_left .subtitle:after{
+    bottom: -60px;
+  }
+  .inner .inner_left .subtitle{
+    margin-bottom: 90px;
+  }
   .ser .uk-column-1-2{
     margin-bottom: 40px;
   }
@@ -100,5 +121,49 @@
   }
   .case_list .top{
     padding-top: 60px;
+  }
+}
+
+
+@media(max-width: 960px){
+  .inner .inner_right .right_img{
+    transform: translate(14px, -140px);
+  }
+  .progects_list_items .progects_list_item_slider .text{
+    padding-left: 0;
+  }
+  .progects_list_items .progects_list_item_slider{
+    gap: 40px;
+  }
+  .progects_list_items .progects_list_item_slider{
+    //grid-template-columns: 50% 50%;
+
+    //box-sizing: border-box;
+    display: flex;
+    padding: 24px;
+    .text{
+      width: 50%;
+    }
+    .progect_slider{
+      width: 50%;
+
+    }
+  }
+  .progects_list_items .progects_list_item_slider .text .items_list{
+    gap: 20px;
+  }
+  .progects_list_items .progects_list_item_slider .progect_slider .item img{
+    height: 324px;
+  }
+  .progects_list_items .progects_list_item_slider .text .name{
+    line-height: 28px;
+  }
+  .inner{
+    section.text{
+      margin-top: -140px;
+    }
+  }
+  .progects_list .section_title{
+    margin-bottom: 60px;
   }
 }
