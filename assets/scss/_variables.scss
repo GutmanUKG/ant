@@ -7,14 +7,206 @@ $Raleway: 'Raleway',sans-serif;
 $Prata:  'Prata', serif;
 $Montserrat: 'Montserrat', sans-serif;
 
+$size_16: calc((100vw - 480px) / (1320 - 480) * (16 - 16) + 16px);
+$size_18: calc((100vw - 360px) / (1920 - 360) * (18 - 14) + 14px);
+$size_40: calc((100vw - 360px) / (1920 - 360) * (40 - 20) + 20px);
+$size_24: calc((100vw - 360px) / (1920 - 480) * (24 - 14) + 13px);
+$size_20: calc((100vw - 360px) / (1920 - 360) * (20 - 14) + 14px);
+$size_32: calc((100vw - 360px) / (1920 - 360) * (32 - 24) + 23px);
+$size_44: calc((100vw - 360px) / (1920 - 360) * (44 - 24) + 23px);
 body{
   font-family: $Raleway;
   background: linear-gradient(180deg, #FFFFFF 0%, #F4F4F5 27.52%);
+  overflow-x: hidden;
 }
 .default_animate{
   position: relative;
   display: block;
 
+}
+.burger_menu_btn{
+  display: none;
+  width: 44px;
+  height: 44px;
+  background: url($path + 'icons/burger_ico.svg')center no-repeat;
+  cursor: pointer;
+}
+
+.burger_menu{
+  padding: 25px 40px;
+  box-sizing: border-box;
+  background: #FFFFFF;
+  position: absolute;
+  z-index: 5;
+  top: 84px;
+  right: -200%;
+  transition: .3s all;
+  width: calc(100% / 2 + 40px);
+  display: grid;
+  bottom: 0;
+  gap: 70px;
+  //align-content: space-between;
+  //justify-items: stretch;
+  &.active{
+    right: 0;
+  }
+  .top{
+    order: 0;
+    display: flex;
+    justify-content: space-between;
+    .close_btn{
+      order: 2;
+      width: 44px;
+      height: 44px;
+      background: url($path + 'icons/close_ico.svg') center no-repeat;
+    }
+    .langs{
+      gap: 20px;
+      display: flex;
+      a{
+        font-family: $Raleway;
+        font-style: normal;
+        font-weight: 550;
+        font-size: $size_16;
+        line-height: 24px;
+        text-align: center;
+        text-transform: uppercase;
+        color: #17171B;
+        opacity: 0.4;
+        &:after{
+          content: '';
+          display: block;
+          width: 100%;
+          height: 1px;
+          background: transparent;
+
+        }
+        &.active{
+          color: #17171B;
+          opacity: 1;
+          &:after{
+            background: #17171B;
+          }
+        }
+        &:hover{
+          text-decoration: none;
+        }
+      }
+    }
+  }
+  .bottom_menu{
+    order: 2;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-content: center;
+    align-items: start;
+    justify-items: end;
+    .info{
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+      width: 100%;
+      .item{
+        font-family: $Raleway;
+        font-style: normal;
+        font-weight: 400;
+        font-size: $size_16;
+        line-height: 24px;
+        color: #17171B;
+        span{
+          display: block;
+          font-family: $Raleway;
+          font-style: normal;
+          font-weight: 700;
+          font-size: 11px;
+          line-height: 14px;
+          letter-spacing: 0.1em;
+          text-transform: uppercase;
+          color: #17171B;
+          margin-bottom: 12px;
+        }
+        a{
+          display: block;
+          font-family: $Raleway;
+          font-style: normal;
+          font-weight: 400;
+          font-size: $size_16;
+          line-height: 24px;
+          color: #17171B;
+        }
+      }
+    }
+    .social_list{
+      display: flex;
+      flex-direction: column;
+      gap: 32px;
+    }
+  }
+
+  .menu_list{
+    ul{
+      justify-content: flex-start;
+      align-items: flex-start;
+      li{
+        &:hover{
+         a{
+           transform: translateY(0);
+         }
+        }
+        &.current{
+          a{
+            color: #17171B;
+            transform: translateY(0);
+          }
+        }
+        a{
+          color: #17171B;
+          text-align: left;
+          &:hover{
+            transform: translateY(0);
+          }
+          &:after{
+            display: none;
+          }
+        }
+        ul{
+          li{
+            a{
+              color: #17171B;
+              text-align: left;
+              display: block;
+              justify-content: flex-start;
+              &:before{
+                display: none;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+.inner .burger_menu{
+  .menu_list{
+    position: revert;
+    ul{
+      align-items: flex-start;
+      li{
+        align-items: flex-start;
+      }
+    }
+  }
+}
+.overflow{
+  position: absolute;
+  z-index: 4;
+  background: #000;
+  opacity: 0.3;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: none;
 }
 .animate_start{
   animation: defaultAnimation 0.5s ;

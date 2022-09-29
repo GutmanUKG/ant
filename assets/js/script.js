@@ -28,7 +28,7 @@ document.addEventListener('DOMContentLoaded', ()=>{
         };
     }
 
-
+    //Анимация (не используеться )
     class Animation{
         constructor({trigger = null, elements = null,animationName = 'default'}) {
             this.trigger  = trigger;
@@ -47,8 +47,10 @@ document.addEventListener('DOMContentLoaded', ()=>{
             })
         }
     }
+    //--------------------
 
 
+    //Класс для создания слайдеров
     class OwlSlider{
         constructor({element = null, options = {},
                     btnNext = null, btnPrev = null}){
@@ -82,46 +84,17 @@ document.addEventListener('DOMContentLoaded', ()=>{
             }
         }
     }
+    //--------------------
 
+    //Стандартная анимация
     const defaultAnimate = new Animation({
         trigger:'mouseenter',
         elements: '.default_animate'
     })
     defaultAnimate.animate()
+    //--------------------
 
-    const optimizeAnimateMenu = throttle(animateMenu, 100)
-    const mainMenu = document.querySelector('.main_menu')
-    const listMenuItem = mainMenu.querySelectorAll('li')
-    let isAnimate = true
-    function animateMenu(item) {
-        if(isAnimate){
-            // for(let i = 0; i < listMenuItem.length; i++){
-            //     listMenuItem[i].classList.remove('show_sub_menu')
-            // }
-            if(item.querySelector('.nav-sub')){
-                item.classList.add('show_sub_menu')
-                mainMenu.classList.add('open_sub_menu')
-            }else {
-                return false
-            }
-        }else{
-            item.classList.remove('show_sub_menu')
-            mainMenu.classList.remove('open_sub_menu')
-        }
-
-    }
-
-    listMenuItem.forEach(item=>{
-        item.addEventListener('mouseover', (e)=>{
-            optimizeAnimateMenu(item)
-            isAnimate = true
-        })
-        item.addEventListener('mouseout', ()=>{
-            isAnimate = false
-            optimizeAnimateMenu(item)
-        })
-    })
-
+    //Создание элементов с картинкой при наведенни на точки карты
     const dotsInMap = document.querySelectorAll('.dot')
 
     dotsInMap.forEach(item=>{
@@ -130,9 +103,9 @@ document.addEventListener('DOMContentLoaded', ()=>{
         image.src = hoverItem.dataset.img
         hoverItem.appendChild(image)
     })
+    //--------------------
 
-
-
+    //Вызов слайдера на главной странице
     const caseSlider = new OwlSlider({
         element: '.case_slider',
         btnNext: '.next_btn',
@@ -143,10 +116,30 @@ document.addEventListener('DOMContentLoaded', ()=>{
             nav:false,
             items: 5.5,
             stagePadding: 30,
-            dots: false
+            dots: false,
+            responsive:{
+                0:{
+                  items: 2
+                },
+                1339:{
+                  items:2.3
+                },
+                1800:{
+                    items:4.5
+                },
+                1826:{
+                  items:5.5
+                },
+
+
+            }
         }
     })
     caseSlider.init()
+    //--------------------
+
+
+    //Вызов слайдера для внутрней страницы
     try{
         const caseSliderInner = new OwlSlider({
             element: '.case_slider_inner',
@@ -165,6 +158,10 @@ document.addEventListener('DOMContentLoaded', ()=>{
     }catch (e){
 
     }
+    //--------------------
+
+
+    //Создание копий слайдера для внутрнеей страницы
     try {
         const innerProgectsSlider = document.querySelectorAll('.item_slider_progect_list')
         innerProgectsSlider.forEach(item=>{
@@ -195,5 +192,67 @@ document.addEventListener('DOMContentLoaded', ()=>{
     }catch(e){
 
     }
+    //--------------------
+
+
+    //перенос и копирование элементов для адаптива
+    const headerLangs = document.querySelector('.langs'),
+        headerMenuList = document.querySelector('.menu_list'),
+        footer = document.querySelector('footer'),
+        footerInfo = footer.querySelector('.info'),
+        socialList = footer.querySelector('.social_list'),
+        burgerMenuBtn = document.querySelector('.burger_menu_btn'),
+        burgerMenu = document.querySelector('.burger_menu'),
+        closeBtn = burgerMenu.querySelector('.close_btn'),
+        body = document.body,
+        overflow = document.querySelector('.overflow');
+    //Вызов анимации открытия и закрытия бургера
+    burgerMenuBtn.addEventListener('click', (e)=>{
+       burgerMenu.classList.add('active')
+        body.style.overflow="hidden"
+        overflow.style.display = 'block'
+    });
+    closeBtn.addEventListener('click', (e)=>{
+        burgerMenu.classList.remove('active')
+        body.style.overflow=""
+        overflow.style.display = ''
+    })
+    overflow.addEventListener('click', ()=>{
+        burgerMenu.classList.remove('active')
+        body.style.overflow=""
+        overflow.style.display = ''
+    })
+    //--------------------
+    //пренос и копирование элементов для создания бургер меню
+    function generateBurgerMenu (){
+        let topBurgerMenu = burgerMenu.querySelector('.top')
+        let bottomBurgerMenu = burgerMenu.querySelector('.bottom_menu')
+        topBurgerMenu.appendChild(headerLangs)
+        burgerMenu.appendChild(headerMenuList)
+        bottomBurgerMenu.appendChild(footerInfo.cloneNode(true))
+        bottomBurgerMenu.appendChild(socialList.cloneNode(true))
+    }
+
+
+
+    //Удаление всех анимаций при наведении на элементы
+    function removeAnimation(){
+        let elements = document.querySelectorAll('.animation')
+        elements.forEach(item=>{
+            item.classList.remove('animation')
+        })
+    }
+
+    //--------------------
+    //--------------------
+
+
+    if(body.clientWidth < 1024){
+        generateBurgerMenu()
+        removeAnimation()
+    }
+
+    //--------------------
+
 
 });

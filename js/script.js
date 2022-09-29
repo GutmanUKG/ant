@@ -41,7 +41,8 @@ document.addEventListener('DOMContentLoaded', function () {
         timer = null;
       }, timeout);
     };
-  }
+  } //Анимация (не используеться )
+
 
   var Animation = /*#__PURE__*/function () {
     function Animation(_ref) {
@@ -76,7 +77,9 @@ document.addEventListener('DOMContentLoaded', function () {
     }]);
 
     return Animation;
-  }();
+  }(); //--------------------
+  //Класс для создания слайдеров
+
 
   var OwlSlider = /*#__PURE__*/function () {
     function OwlSlider(_ref2) {
@@ -122,52 +125,26 @@ document.addEventListener('DOMContentLoaded', function () {
     }]);
 
     return OwlSlider;
-  }();
+  }(); //--------------------
+  //Стандартная анимация
+
 
   var defaultAnimate = new Animation({
     trigger: 'mouseenter',
     elements: '.default_animate'
   });
-  defaultAnimate.animate();
-  var optimizeAnimateMenu = throttle(animateMenu, 100);
-  var mainMenu = document.querySelector('.main_menu');
-  var listMenuItem = mainMenu.querySelectorAll('li');
-  var isAnimate = true;
+  defaultAnimate.animate(); //--------------------
+  //Создание элементов с картинкой при наведенни на точки карты
 
-  function animateMenu(item) {
-    if (isAnimate) {
-      // for(let i = 0; i < listMenuItem.length; i++){
-      //     listMenuItem[i].classList.remove('show_sub_menu')
-      // }
-      if (item.querySelector('.nav-sub')) {
-        item.classList.add('show_sub_menu');
-        mainMenu.classList.add('open_sub_menu');
-      } else {
-        return false;
-      }
-    } else {
-      item.classList.remove('show_sub_menu');
-      mainMenu.classList.remove('open_sub_menu');
-    }
-  }
-
-  listMenuItem.forEach(function (item) {
-    item.addEventListener('mouseover', function (e) {
-      optimizeAnimateMenu(item);
-      isAnimate = true;
-    });
-    item.addEventListener('mouseout', function () {
-      isAnimate = false;
-      optimizeAnimateMenu(item);
-    });
-  });
   var dotsInMap = document.querySelectorAll('.dot');
   dotsInMap.forEach(function (item) {
     var hoverItem = item.querySelector('.hover_img');
     var image = document.createElement('img');
     image.src = hoverItem.dataset.img;
     hoverItem.appendChild(image);
-  });
+  }); //--------------------
+  //Вызов слайдера на главной странице
+
   var caseSlider = new OwlSlider({
     element: '.case_slider',
     btnNext: '.next_btn',
@@ -178,10 +155,25 @@ document.addEventListener('DOMContentLoaded', function () {
       nav: false,
       items: 5.5,
       stagePadding: 30,
-      dots: false
+      dots: false,
+      responsive: {
+        0: {
+          items: 2
+        },
+        1339: {
+          items: 2.3
+        },
+        1800: {
+          items: 4.5
+        },
+        1826: {
+          items: 5.5
+        }
+      }
     }
   });
-  caseSlider.init();
+  caseSlider.init(); //--------------------
+  //Вызов слайдера для внутрней страницы
 
   try {
     var caseSliderInner = new OwlSlider({
@@ -198,7 +190,9 @@ document.addEventListener('DOMContentLoaded', function () {
       }
     });
     caseSliderInner.init();
-  } catch (e) {}
+  } catch (e) {} //--------------------
+  //Создание копий слайдера для внутрнеей страницы
+
 
   try {
     var innerProgectsSlider = document.querySelectorAll('.item_slider_progect_list');
@@ -225,6 +219,61 @@ document.addEventListener('DOMContentLoaded', function () {
         owl.trigger('prev.owl.carousel', [300]);
       });
     });
-  } catch (e) {}
+  } catch (e) {} //--------------------
+  //перенос и копирование элементов для адаптива
+
+
+  var headerLangs = document.querySelector('.langs'),
+      headerMenuList = document.querySelector('.menu_list'),
+      footer = document.querySelector('footer'),
+      footerInfo = footer.querySelector('.info'),
+      socialList = footer.querySelector('.social_list'),
+      burgerMenuBtn = document.querySelector('.burger_menu_btn'),
+      burgerMenu = document.querySelector('.burger_menu'),
+      closeBtn = burgerMenu.querySelector('.close_btn'),
+      body = document.body,
+      overflow = document.querySelector('.overflow'); //Вызов анимации открытия и закрытия бургера
+
+  burgerMenuBtn.addEventListener('click', function (e) {
+    burgerMenu.classList.add('active');
+    body.style.overflow = "hidden";
+    overflow.style.display = 'block';
+  });
+  closeBtn.addEventListener('click', function (e) {
+    burgerMenu.classList.remove('active');
+    body.style.overflow = "";
+    overflow.style.display = '';
+  });
+  overflow.addEventListener('click', function () {
+    burgerMenu.classList.remove('active');
+    body.style.overflow = "";
+    overflow.style.display = '';
+  }); //--------------------
+  //пренос и копирование элементов для создания бургер меню
+
+  function generateBurgerMenu() {
+    var topBurgerMenu = burgerMenu.querySelector('.top');
+    var bottomBurgerMenu = burgerMenu.querySelector('.bottom_menu');
+    topBurgerMenu.appendChild(headerLangs);
+    burgerMenu.appendChild(headerMenuList);
+    bottomBurgerMenu.appendChild(footerInfo.cloneNode(true));
+    bottomBurgerMenu.appendChild(socialList.cloneNode(true));
+  } //Удаление всех анимаций при наведении на элементы
+
+
+  function removeAnimation() {
+    var elements = document.querySelectorAll('.animation');
+    elements.forEach(function (item) {
+      item.classList.remove('animation');
+    });
+  } //--------------------
+  //--------------------
+
+
+  if (body.clientWidth < 1024) {
+    generateBurgerMenu();
+    removeAnimation();
+  } //--------------------
+
 });
 //# sourceMappingURL=script.js.map

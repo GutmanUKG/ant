@@ -161,7 +161,7 @@ header{
     font-family: $Prata;
     font-style: normal;
     font-weight: 400;
-    font-size: 44px;
+    font-size: $size_44;
     line-height: 48px;
     color: #FFFFFF;
     margin-bottom: 40px;
@@ -184,7 +184,7 @@ header{
     font-family: $Prata;
     font-style: normal;
     font-weight: 400;
-    font-size: 32px;
+    font-size: $size_32;
     line-height: 40px;
     color: #FFFFFF;
     margin-bottom: 20px;
@@ -213,7 +213,7 @@ header{
       font-family: $Raleway;
       font-style: normal;
       font-weight: 500;
-      font-size: 18px;
+      font-size: $size_18;
       line-height: 24px;
       color: #FFFFFF;
       margin-bottom: 0;
@@ -241,7 +241,7 @@ header{
     font-family: $Prata;
     font-style: normal;
     font-weight: 400;
-    font-size: 32px;
+    font-size: $size_32;
     line-height: 40px;
     color: #17171B;
     margin-bottom: 100px;
@@ -252,7 +252,7 @@ header{
       font-family: $Raleway;
       font-style: normal;
       font-weight: 400;
-      font-size: 16px;
+      font-size: $size_16;
       line-height: 24px;
       color: rgba(23, 23, 27, 0.8);
     }
@@ -276,8 +276,10 @@ header{
     margin-top: 64px;
     position: relative;
     height: 411px;
-    width: 861px;
-    background: url($path + 'map_default.png');
+    max-width: 861px;
+    width: 100%;
+    background: url($path + 'map_default.png') no-repeat;
+    background-size: contain;
     .dot{
       width: 40px;
       height: 40px;
@@ -363,7 +365,7 @@ svg{
       font-family: $Prata;
       font-style: normal;
       font-weight: 400;
-      font-size: 32px;
+      font-size: $size_32;
       line-height: 40px;
       color: #17171B;
      &:after{
@@ -382,7 +384,7 @@ svg{
         font-family: $Raleway;
         font-style: normal;
         font-weight: 400;
-        font-size: 16px;
+        font-size: $size_16;
         line-height: 24px;
         color: rgba(23, 23, 27, 0.8);
       }
@@ -486,7 +488,7 @@ svg{
         font-family: $Raleway;
         font-style: normal;
         font-weight: 600;
-        font-size: 18px;
+        font-size: $size_18;
         line-height: 24px;
         color: #17171B;
         position: relative;
@@ -524,7 +526,7 @@ svg{
     font-family: $Prata;
     font-style: normal;
     font-weight: 400;
-    font-size: 32px;
+    font-size: $size_32;
     line-height: 40px;
     color: #17171B;
     margin-bottom: 64px;
@@ -533,7 +535,7 @@ svg{
     font-family: $Raleway;
     font-style: normal;
     font-weight: 400;
-    font-size: 16px;
+    font-size: $size_16;
     line-height: 24px;
     color: rgba(23, 23, 27, 0.8);
     margin-bottom: 64px;
@@ -592,7 +594,7 @@ svg{
       font-family: $Prata;
       font-style: normal;
       font-weight: 600;
-      font-size: 32px;
+      font-size: $size_32;
       line-height: 40px;
       color: #17171B;
       margin-bottom: 64px;
@@ -701,9 +703,8 @@ svg{
         font-family: $Raleway;
         font-style: normal;
         font-weight: 400;
-        font-size: 16px;
+        font-size: $size_16;
         line-height: 24px;
-        font-feature-settings: 'pnum' on, 'lnum' on;
         color: #17171B;
         span{
           display: block;
@@ -723,7 +724,7 @@ svg{
           font-family: $Raleway;
           font-style: normal;
           font-weight: 400;
-          font-size: 16px;
+          font-size: $size_16;
           line-height: 24px;
           color: #17171B;
         }
@@ -742,6 +743,7 @@ svg{
         display: flex;
         gap: 35px;
         align-items: center;
+
       }
       &:after{
         content: '';
@@ -819,7 +821,7 @@ body.inner{
       font-family: $Prata;
       font-style: normal;
       font-weight: 400;
-      font-size: 44px;
+      font-size: $size_44;
       line-height: 48px;
       color: #17171B;
       margin-bottom: 40px;
@@ -905,7 +907,7 @@ section.text{
     font-family: $Raleway;
     font-style: normal;
     font-weight: 400;
-    font-size: 16px;
+    font-size: $size_16;
     line-height: 32px;
     color: rgba(23, 23, 27, 0.8);
   }
@@ -916,7 +918,7 @@ section.text{
     font-family: $Prata;
     font-style: normal;
     font-weight: 400;
-    font-size: 44px;
+    font-size: $size_44;
     line-height: 48px;
     color: #17171B;
     margin-bottom: 120px;
@@ -942,7 +944,7 @@ section.text{
         font-family: $Prata;
         font-style: normal;
         font-weight: 400;
-        font-size: 32px;
+        font-size: $size_32;
         line-height: 40px;
         color: #17171B;
         margin-bottom: 40px;
@@ -955,7 +957,7 @@ section.text{
           font-family: $Raleway;
           font-style: normal;
           font-weight: 400;
-          font-size: 16px;
+          font-size: $size_16;
           line-height: 24px;
           color: rgba(23, 23, 27, 0.8);
           span{
@@ -994,4 +996,6 @@ section.text{
     }
   }
 }
+
+
 @import "media";
