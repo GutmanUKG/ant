@@ -119,10 +119,13 @@ document.addEventListener('DOMContentLoaded', ()=>{
             dots: false,
             responsive:{
                 0:{
-                  items: 2
+                  items: 1
+                },
+                700:{
+                    items: 2
                 },
                 1339:{
-                  items:2.3
+                  items:4
                 },
                 1800:{
                     items:4.5
@@ -151,7 +154,26 @@ document.addEventListener('DOMContentLoaded', ()=>{
                 nav:false,
                 items: 5.5,
                 stagePadding: 30,
-                dots: false
+                dots: false,
+                responsive:{
+                    0:{
+                        items: 1.3
+                    },
+                    700:{
+                        items: 2.3
+                    },
+                    1339:{
+                        items:4.3
+                    },
+                    1800:{
+                        items:4.5
+                    },
+                    1826:{
+                        items:5.5
+                    },
+
+
+                }
             }
         })
         caseSliderInner.init()
@@ -194,7 +216,30 @@ document.addEventListener('DOMContentLoaded', ()=>{
     }
     //--------------------
 
+    //Анимация на формах
 
+    const mainForm = document.querySelector('#main_form'),
+        inputs = mainForm.querySelectorAll('input')
+
+    inputs.forEach(item=>{
+        item.addEventListener('click', ()=>{
+            clearClass(inputs, 'target')
+            item.parentNode.classList.add('target')
+        })
+        item.addEventListener('input', ()=>{
+            if(item.value.length > 30){
+                item.parentNode.classList.add('removeAfter')
+            }else{
+                item.parentNode.classList.remove('removeAfter')
+            }
+        })
+    })
+    function clearClass(elements, activeClass){
+        for(let i = 0; i < elements.length; i++){
+            elements[i].parentNode.classList.remove(activeClass)
+        }
+    }
+    //--------------------
     //перенос и копирование элементов для адаптива
     const headerLangs = document.querySelector('.langs'),
         headerMenuList = document.querySelector('.menu_list'),

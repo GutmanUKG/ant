@@ -8,6 +8,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat&family=Prata&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Prata&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant:wght@700&family=Raleway:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <!--  Libs  -->
     <link rel="stylesheet" href="./css/uikit-rtl.min.css">
     <link rel="stylesheet" href="./css/uikit.min.css">
@@ -310,15 +312,15 @@
                             <h3>
                                 Расскажите нам о своем <br> проекте!
                             </h3>
-                            <form action="">
-                                <label for="name">
-                                    <input type="text" id="name" placeholder="ИМЯ ФАМИЛИЯ">
+                            <form action="" id="main_form">
+                                <label for="name" data-visible="ИМЯ ФАМИЛИЯ" class="">
+                                    <input type="text" id="name">
                                 </label>
                                 <label for="phone">
                                     <input type="text" id="phone" placeholder="+7 (---) -- --">
                                 </label>
-                                <label for="email">
-                                    <input type="text" id="email" placeholder="E-MAIL">
+                                <label for="email" data-visible="E-MAIL">
+                                    <input type="text" id="email" >
                                 </label>
                                 <textarea name="" id="" cols="" rows="" placeholder="ВАШЕ СООБЩЕНИЕ">
 
