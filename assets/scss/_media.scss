@@ -170,6 +170,24 @@
 
 
 @media (max-width: 731px ) {
+  .progects_list_items .progects_list_item_slider{
+    flex-direction: column;
+    .text{
+      width: 100%;
+      order: 1;
+    }
+    .progect_slider{
+      width: 100%;
+    }
+  }
+  .inner{
+    section.text{
+      .uk-column-1-2{
+        display: grid;
+        grid-template-columns: 1fr;
+      }
+    }
+  }
   .burger_menu{
     top: 0;
   }
@@ -179,11 +197,12 @@
   .form_grid .wrapper_info{
     display: grid;
     grid-template-columns: 1fr 1fr;
+    gap: 40px;
     .footer_menu{
       grid-column-start: 1;
       grid-column-end: 2;
       grid-row-start: 1;
-      grid-row-end: 4;
+      grid-row-end: 2;
       order: 1;
     }
     .descr{
@@ -268,6 +287,82 @@
 
 }
 @media(max-width: 559px){
+  .inner{
+    .logo{
+      position: relative;
+      z-index: 5;
+      a{
+        img{
+          filter: invert(1);
+        }
+      }
+    }
+    .section_banner{
+      &:after{
+        height: 400px;
+        transform: translate(0, 0);
+        background: url($path + 'inner_top_bg_mob.png') left no-repeat, linear-gradient(157.49deg, #3585B3 -4.56%, #00BAD3 163.26%);;
+      }
+      .uk-grid{
+        margin-left: 0px;
+        display: grid;
+        grid-template-columns: 1fr;
+        .inner_left,
+        .inner_right {
+          width: 100%;
+        }
+        .inner_left{
+          margin-top: -80px;
+          order: 1;
+          .wrapper_btn{
+            display: flex;
+            justify-content: center;
+            &:after{
+              left: 50%;
+              transform: translate(-50%,0%);
+            }
+          }
+          h1{
+            br{
+              display: none;
+              text-align: center;
+            }
+          }
+        }
+        .inner_right{
+          order: 0;
+          height: 380px;
+          .right_img{
+            //height: 380px;
+            //width: 246px;
+            display: none;
+          }
+        }
+      }
+    }
+    section.text{
+      margin-top: 60px;
+    }
+    .progects_list{
+      .title_center{
+        br{
+          display: none;
+        }
+      }
+    }
+    .progects_list_items .progects_list_item_slider{
+      padding: 16px;
+    }
+    footer{
+      margin-top: 80px !important;
+    }
+  }
+  .location .top .subtitle{
+    margin-bottom: 60px;
+  }
+  .burger_menu{
+    padding: 26px 24px;
+  }
   header .uk-position-relative{
     background: url($path + 'header_bg_mob.png')top/contain no-repeat;
   }
@@ -340,4 +435,8 @@
   .burger_menu{
     width: calc(80% + 40px);
   }
+}
+
+@media (max-width: 420px){
+
 }

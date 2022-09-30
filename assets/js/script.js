@@ -194,6 +194,12 @@ document.addEventListener('DOMContentLoaded', ()=>{
                 items: 1,
                 nav:false,
                 dots:false,
+                responsive:{
+                    520:{
+                        items:1,
+                        // margin:10,
+                    }
+                }
             })
             let btnNext = item.parentNode.querySelector('.next_btn')
             let btnPrev = item.parentNode.querySelector('.prev_btn')
@@ -256,16 +262,19 @@ document.addEventListener('DOMContentLoaded', ()=>{
        burgerMenu.classList.add('active')
         body.style.overflow="hidden"
         overflow.style.display = 'block'
+        burgerMenuBtn.style.zIndex = '-1'
     });
     closeBtn.addEventListener('click', (e)=>{
         burgerMenu.classList.remove('active')
         body.style.overflow=""
         overflow.style.display = ''
+        burgerMenuBtn.style.zIndex = ''
     })
     overflow.addEventListener('click', ()=>{
         burgerMenu.classList.remove('active')
         body.style.overflow=""
         overflow.style.display = ''
+        burgerMenuBtn.style.zIndex = ''
     })
     //--------------------
     //пренос и копирование элементов для создания бургер меню

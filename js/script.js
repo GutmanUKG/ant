@@ -223,7 +223,13 @@ document.addEventListener('DOMContentLoaded', function () {
         margin: 0,
         items: 1,
         nav: false,
-        dots: false
+        dots: false,
+        responsive: {
+          520: {
+            items: 1 // margin:10,
+
+          }
+        }
       });
       var btnNext = item.parentNode.querySelector('.next_btn');
       var btnPrev = item.parentNode.querySelector('.prev_btn');
@@ -282,16 +288,19 @@ document.addEventListener('DOMContentLoaded', function () {
     burgerMenu.classList.add('active');
     body.style.overflow = "hidden";
     overflow.style.display = 'block';
+    burgerMenuBtn.style.zIndex = '-1';
   });
   closeBtn.addEventListener('click', function (e) {
     burgerMenu.classList.remove('active');
     body.style.overflow = "";
     overflow.style.display = '';
+    burgerMenuBtn.style.zIndex = '';
   });
   overflow.addEventListener('click', function () {
     burgerMenu.classList.remove('active');
     body.style.overflow = "";
     overflow.style.display = '';
+    burgerMenuBtn.style.zIndex = '';
   }); //--------------------
   //пренос и копирование элементов для создания бургер меню
 
